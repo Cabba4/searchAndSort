@@ -1,0 +1,7 @@
+*vcx*
+# Local History for Visual Studio Code
+.history/
+
+Debug
+*.sln
+*.vs
