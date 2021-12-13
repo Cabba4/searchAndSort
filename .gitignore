@@ -1,3 +1,5 @@
+*.pdf
+*.xlsx
 *vcx*
 # Local History for Visual Studio Code
 .history/
