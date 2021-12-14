@@ -38,6 +38,47 @@ public:
 	//Error_code replace(int position, const Record& data);
 };
 
+class Sortable_list : public List<Record> {
+public:
+	Sortable_list();
+	void insertion_sort();
+};
+
+
+Sortable_list::Sortable_list()
+{
+	count = 0;
+}
+
+void Sortable_list::insertion_sort()
+/*
+Post: The entries of the Sortable_list have been rearranged so that
+	  the keys in all the  entries are sorted into nondecreasing order.
+Uses: Methods for the class Record; the contiguous List implementation of
+	  Chapter 6
+*/
+{
+	int first_unsorted;    //  position of first unsorted entry
+	int position;          //  searches sorted part of list
+	Record current;        //  holds the entry temporarily removed from list
+	current.comparisons = 0;
+	for (first_unsorted = 1; first_unsorted < count; first_unsorted++)
+		if (entry[first_unsorted] < entry[first_unsorted - 1]) {
+			current.comparisons++;
+			position = first_unsorted;
+			current = entry[first_unsorted];         //  Pull unsorted entry out of the list.
+			//current.assignments += 2;
+			do {               //  Shift all entries until the proper position is found.
+				entry[position] = entry[position - 1];
+				//current.assignments++;
+				position--;                           //  position is empty.
+			} while (position > 0 && entry[position - 1] > current);
+			entry[position] = current;
+			current.comparisons++;
+		}
+	cout << "Comparisions : " << current.comparisons << endl;
+	//cout << "Assignments : " << current.assignments << endl;
+}
 
 Ordered_list::Ordered_list()
 {
@@ -242,10 +283,8 @@ Post: If the Ordered_list is not full, 0 <= position <= n,
 }
 
 
-
-
 template <class Record>
 void output(Record& x)
 {
-	cout << x << "   " << endl;
+	cout << x << "   ";
 }

@@ -18,6 +18,7 @@ int comparision;
 
 List<Record> the_list;
 Ordered_list list2;
+Sortable_list slist;
 
 Error_code sequential_search(const List<Record>& the_list,
 	const Key& target, int& position)
@@ -116,6 +117,19 @@ void initialise_order_list(int size)
 	//the_list.traverse(output);
 }
 
+void initialise_sort(int size)
+{
+	
+	for (int i = 0; i < size; i++)
+	{
+		int random = 1 + (rand() % (size * 10));
+		slist.insert(i, random);
+	}
+
+	slist.traverse(output);
+	cout << endl;
+}
+
 void search_1()
 {
 	system("clear");
@@ -193,7 +207,25 @@ void search_2()
 
 void sort_1()
 {
+	system("clear");
+	cout << "Enter data size for the list " << endl;
+	cin >> list_size;
+	initialise_sort(list_size);
+	list_size--;
+	cout << "Now program will sort randomly generated data set!" << endl;
+	T.reset();
+	cout << "insertion_sort:" << endl;
+	cout << "------------------" << endl;
+	slist.insertion_sort();
+	time1 = T.elapsed_time();
+	{
+		cout << "Status: Successful" << endl;
+		cout << "Elapsed Time: " << T.elapsed_time() << endl;
+		//slist.traverse(output);
 
+		cout << "------------------" << endl;
+		cout << "------------------" << endl;
+	}
 }
 
 void startup()
@@ -205,7 +237,7 @@ void startup()
 		cout << "Welcome to this Search and Sort Program " << endl;
 		cout << "Sequential Search..........................1" << endl;
 		cout << "Binary Search..............................2" << endl;
-		cout << "Some Sort..................................3" << endl;
+		cout << "Insertion Sort..................................3" << endl;
 		int choice;
 		cin >> choice;
 		switch (choice)

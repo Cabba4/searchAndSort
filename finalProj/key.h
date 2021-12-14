@@ -37,6 +37,13 @@ bool operator !=(const Key& x, const Key& y);
 
 ostream& operator << (ostream& os, const Key& k);
 
+/*
+Key& Key::operator=(const Key& original)
+{
+	//Key::assignments++;
+	return *this;
+}
+*/
 
 ostream& operator <<(ostream& os, const Key& k)
 {
